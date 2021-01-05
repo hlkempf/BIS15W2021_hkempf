@@ -1,0 +1,41 @@
+---
+title: "RMarkdown Practice"
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# This is my first **Markdown** file!
+
+## This is my first _Markdown_ file!
+
+### This is my first Markdown file!
+
+```{r}
+4-1
+4*2
+4+1
+4/2
+
+```
+## This is my email [email](mailto:hlkempf@ucdavis.edu)
+
+## This is Google [Google](http://www.google.com)
+
+## From lab1_2 step 3 
+```{r message=FALSE, warning=FALSE}
+#install.packages("tidyverse")
+library("tidyverse")
+```
+
+```{r}
+ggplot(mtcars, aes(x = factor(cyl))) +
+    geom_bar()
+```
+
+
