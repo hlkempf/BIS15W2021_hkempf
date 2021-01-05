@@ -2,12 +2,10 @@
 
 # Contact
 
-### Hannah Kempf, PhD Student
+### Hannah Kempf, PhD Student 
 ### Earth and Planetary Sciences
 ### Bodega Marine Lab
 ### University of California, Davis
 ### _she/her_
 
-## Email
-
-### hlkempf@ucdavis.edu
+## Contact me via [email](mailto:hlkempf@ucdavis.edu)
