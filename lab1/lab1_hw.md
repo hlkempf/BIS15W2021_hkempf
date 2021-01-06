@@ -1,7 +1,7 @@
 ---
 title: "Lab 1 Homework"
 author: "Hannah Kempf"
-date: "`r Sys.Date()`"
+date: "2021-01-06"
 output:
   html_document: 
     theme: spacelab
@@ -30,58 +30,101 @@ Done! See [this link](https://github.com/hlkempf/BIS15W2021_hkempf)
 
 _HLK_: reminder that shortcut for inserting code chunk is `option+command+i`
 
-```{r}
+
+```r
 getwd()
 ```
 
-```{r}
+```
+## [1] "/Users/hannahkempf/Desktop/BIS15W2021_hkempf/lab1"
+```
+
+
+```r
  + 5 - 3 * 2  
 ```
-```{r}
+
+```
+## [1] -1
+```
+
+```r
   + 8 / 2 ** 2
+```
+
+```
+## [1] 2
 ```
   
 **5. Did any of the results in #4 surprise you? Write two programs that calculate each expression such that the result for the first example is 4 and the second example is 16.**  
 
 These didn't surprise me, as order of operations (PEMDAS) would produce the results printed above. Using the following code would produce 4 and 16:
 
-```{r}
+
+```r
 (5-3) * 2
 ```
 
-```{r}
+```
+## [1] 4
+```
+
+
+```r
 (8/2) ** 2
+```
+
+```
+## [1] 16
 ```
 
 **6. `Objects` in R are a way in which we can store data or operations. We will talk more about objects next week. For now, make a new object `pi` as 3.14159265359 by running the following code chunk. You should now see the object `pi` in the environment window in the top right.**  
 
-```{r}
+
+```r
 pi <- 3.14159265359
 ```
 
 **7. Let's say we want to multiply `pi` by 2. Using the same arithmetic principles that we just learned, write a code chunk that performs this operation using the object we created.** 
 
-```{r}
+
+```r
 pi * 2
 ```
 
+```
+## [1] 6.283185
+```
+
 **8. In order to get help with any command in R, just type a `?` in front the command of interest. Practice this by running the following code chunk.**  
-```{r}
+
+```r
 ?mean
 ```
 
 **9. Let's calculate the mean for the numbers 2, 8, 6, 4, 9, 10. I have built an object `x` for you below so all you need to do is run the first code chunk and then create a second code chunk that shows the calculation. Give it a try!**  
-```{r}
+
+```r
 x <- c(2, 8, 6, 6, 7, 4, 9, 9, 9, 10)
 ```
 Second code chunk:
-```{r}
+
+```r
 mean(x)
 ```
 
+```
+## [1] 7
+```
+
 **10. Repeat the procedure above, but this time calculate the median.**  
-```{r}
+
+```r
 median(x)
+```
+
+```
+## [1] 7.5
 ```
 
 ## Push your final code to GitHub!
