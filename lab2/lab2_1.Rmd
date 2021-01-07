@@ -82,13 +82,14 @@ veyron <- 268
 
 3. Use the function `mean()` to calculate the mean top speed for the cars.
 
-_HLK: first created a new vector for the cars_
+_HLK: first created a new vector for the cars because "mean" will only calculate value of the first object, part of "trim" function_
 ```{r}
-cars <- c(venom_GT, chiron, veyron)
+?mean
+top_speed <- c(venom_GT, chiron, veyron)
 ```
 
 ```{r}
-mean(cars)
+mean(top_speed)
 ```
 
 ## Types of Data

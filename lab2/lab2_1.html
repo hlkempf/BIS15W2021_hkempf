@@ -303,6 +303,11 @@ control &lt;- 38</code></pre>
 my_experiment</code></pre>
 <pre><code>## [1] 74</code></pre>
 </div>
+<div id="tab-complete" class="section level2">
+<h2>Tab complete</h2>
+<pre class="r"><code>my_experiment</code></pre>
+<pre><code>## [1] 74</code></pre>
+</div>
 <div id="nomenclature" class="section level2">
 <h2>Nomenclature</h2>
 <p>We need to be careful about nomenclature when we write code. R allows us to give almost any name we want to an object, but there are exceptions. For example, we don’t want to give a name to an object that is the same as a function in R.</p>
@@ -327,9 +332,10 @@ veyron &lt;- 268</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Use the function <code>mean()</code> to calculate the mean top speed for the cars.</li>
 </ol>
-<p><em>HLK: first created a new vector for the cars</em></p>
-<pre class="r"><code>cars &lt;- c(venom_GT, chiron, veyron)</code></pre>
-<pre class="r"><code>mean(cars)</code></pre>
+<p><em>HLK: first created a new vector for the cars because “mean” will only calculate value of the first object, part of “trim” function</em></p>
+<pre class="r"><code>?mean
+top_speed &lt;- c(venom_GT, chiron, veyron)</code></pre>
+<pre class="r"><code>mean(top_speed)</code></pre>
 <pre><code>## [1] 266.3333</code></pre>
 </div>
 <div id="types-of-data" class="section level2">

@@ -62,6 +62,15 @@ my_experiment
 ```
 ## [1] 74
 ```
+## Tab complete
+
+```r
+my_experiment
+```
+
+```
+## [1] 74
+```
 
 ## Nomenclature
 We need to be careful about nomenclature when we write code. R allows us to give almost any name we want to an object, but there are exceptions. For example, we don't want to give a name to an object that is the same as a function in R.  
@@ -102,15 +111,16 @@ veyron <- 268
 
 3. Use the function `mean()` to calculate the mean top speed for the cars.
 
-_HLK: first created a new vector for the cars_
+_HLK: first created a new vector for the cars because "mean" will only calculate value of the first object, part of "trim" function_
 
 ```r
-cars <- c(venom_GT, chiron, veyron)
+?mean
+top_speed <- c(venom_GT, chiron, veyron)
 ```
 
 
 ```r
-mean(cars)
+mean(top_speed)
 ```
 
 ```
