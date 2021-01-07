@@ -1,6 +1,6 @@
-## BIS 015 Winter Qtr. 2021
+# BIS 015 Winter Qtr. 2021
 
-# Contact:
+## Contact:
 
 ### Hannah Kempf, PhD Student 
 #### Earth and Planetary Sciences
