@@ -9,4 +9,4 @@
 
 ##### _she/her_
 
-### Contact me via [email](mailto:hlkempf@ucdavis.edu)
+### Contact me via email [here](mailto:hlkempf@ucdavis.edu).
