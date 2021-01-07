@@ -2,7 +2,7 @@
 
 ## Contact:
 
-### Hannah Kempf, PhD Student 
+### Hannah Kempf, Ph.D Student 
 #### Earth and Planetary Sciences
 #### Bodega Marine Lab
 #### University of California, Davis
