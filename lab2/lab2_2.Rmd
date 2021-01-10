@@ -2,10 +2,11 @@
 title: "Data Structures: Vectors and Data Matrices"
 date: "`r Sys.Date()`"
 output:
-  html_document:
+  html_document: 
     theme: spacelab
     toc: yes
     toc_float: yes
+    keep_md: yes
   pdf_document:
     toc: yes
 ---
@@ -53,18 +54,26 @@ days_of_the_week[3]
 Work through these examples and make adjustments to the values to experiment.
 
 2. Evaluate all numerics in `my_vector_sequence` to determine which has a value of 15.  
+ Note: you can use "==" to find which one is 15 with "TRUE" or "FALSE"
+ 
 ```{r}
+my_vector_sequence==15 
 
 ```
 
 3. We can use operators such as <, >, ==, <==, etc. Show all values in `my_vector_sequence` that are less than 10.  How about less than or equal to 10?  
 ```{r}
-
+my_vector_sequence < 10
+my_vector_sequence <= 10
 ```
 
-4. If you use `[]` then you only get the values, not the logical evaluation of the entire vector. Experiment with this by adjusting the chunk below.    
+4. If you use `[]` then you can get the values by themselves, not the logical evaluation of the entire vector. Experiment with this by adjusting the chunk below.    
 ```{r}
 my_vector_sequence[my_vector_sequence <= 10]
+```
+```{r}
+my_vector_sequence <= 10
+#this gives you the T/F evaluation.
 ```
 
 ## Data Matrices
@@ -82,9 +91,11 @@ Deathly_Hallows_1 <- c(295.9, 664.3)
 Deathly_Hallows_2 <- c(381.0, 960.5)
 ```
 
-Create a new object called `box_office`. Here we are using the `c` command to combine the vectors into one.
+Create a new object called `box_office`. Here we are using the `c` command to COMBINE the vectors that we just created into one matrix.
 ```{r}
 box_office <- c(Philosophers_Stone, Chamber_of_Secrets, Prisoner_of_Azkaban, Goblet_of_Fire, Order_of_the_Phoenix, Half_Blood_Prince, Deathly_Hallows_1, Deathly_Hallows_2)
+
+#print this
 box_office
 ```
 
@@ -121,13 +132,17 @@ harry_potter_matrix
 ```
 
 ## Using a data matrix
-Once you have a data matrix, you can perform lots of different analyses. For example, you can calculate the total earnings of each movie.
+Once you have a data matrix, you can perform lots of different analyses. For example, you can calculate the total earnings of each movie using "rowSums" and put that info into a new object.
 ```{r}
 global <- rowSums(harry_potter_matrix)
 global
 ```
 
-And even add a new column to reflect this calculation. `cbind()` adds columns.
+And even add a new column to reflect this calculation. 
+
+`cbind()` adds columns.
+`rbind()` adds rows
+
 ```{r}
 all_harry_potter_matrix <- cbind(harry_potter_matrix, global)
 all_harry_potter_matrix
@@ -136,12 +151,15 @@ all_harry_potter_matrix
 ## Practice
 1. What are the total earnings for the US and non-US regions?  
 ```{r}
-
+total_earnings <- colSums(all_harry_potter_matrix)
+total_earnings
 ```
 
 2. Add this information to the data matrix. Hint: you are adding a row, not a column.  
 ```{r}
+final_harry_potter_matrix <- rbind(all_harry_potter_matrix, total_earnings)
 
+final_harry_potter_matrix
 ```
 
 ## A few Extras
