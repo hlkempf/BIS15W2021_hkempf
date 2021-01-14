@@ -160,7 +160,7 @@ mean(hsprings$temp_C)
 
 5. Save your hot springs data as a `.csv` file! Do not allow row names. 
 ```{r}
-
+write.csv(hsprings, "hsprings.csv", row.names = FALSE)
 ```
 
 ## That's it! Take a break and I will see you on Zoom!  
