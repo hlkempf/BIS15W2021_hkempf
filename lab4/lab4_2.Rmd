@@ -62,6 +62,7 @@ filter(fish, lakeid != "AL")
 _I.e. everything that is NOT Alabama.`_
 
 ## Using `filter()` with multiple observations  
+
 Filtering multiple values within the same variable (column) requires the `%in%` [operator](https://www.tutorialspoint.com/r/r_operators.htm). 
 
 _i.e. gets lengths 167 ane 175_
