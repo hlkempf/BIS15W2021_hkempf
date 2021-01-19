@@ -73,7 +73,7 @@ fish
 select(fish, fish_id:length)
 ```
 
-The - operator is useful in select. It allows us to select everything except the specified variables.
+The - operator is useful in `select()`. It allows us to select everything except the specified variables.
 ```{r}
 select(fish, -fish_id, -annnumber, -length, -radii_length_mm)
 ```
@@ -93,11 +93,12 @@ When columns are sequentially named, `starts_with()` makes selecting columns eas
 select(fish, starts_with("radii"))
 ```
 
-Options to select columns based on a specific criteria include:  
-1. ends_with() = Select columns that end with a character string  
+#Options to select columns based on a specific criteria include: 
+
+1. ends_with() = Select columns that end with a character string
 2. contains() = Select columns that contain a character string  
 3. matches() = Select columns that match a regular expression  
-4. one_of() = Select columns names that are from a group of names  
+4. one_of() = Select columns names that are from a group of names
 
 ```{r}
 names(fish)
@@ -116,6 +117,7 @@ select(fish, matches("a.+er"))
 ```
 
 You can also select columns based on the class of data.  
+#Here using `select_if()`
 ```{r}
 glimpse(fish)
 ```
@@ -124,7 +126,7 @@ glimpse(fish)
 select_if(fish, is.numeric)
 ```
 
-To select all columns that are *not* a class of data, you need to add a `~`.
+To select all columns that are *not* a class of data, you need to add a `~!`.
 ```{r}
 select_if(fish, ~!is.numeric(.))
 ```
@@ -135,7 +137,6 @@ For this exercise we will use life history data for mammals. The [data](http://e
 ```{r}
 mammals <- readr::read_csv("data/mammal_lifehistories_v2.csv")
 ```
-
 1. Use one or more of your favorite functions to assess the structure of the data.  
 ```{r}
 names(mammals)
@@ -144,16 +145,21 @@ names(mammals)
 ```{r}
 glimpse(mammals)
 ```
-
+```{r}
+summary(mammals)
+```
 2. Are there any NAs? Are you sure? Try taking an average of `max. life` as a test.  
 ```{r}
 anyNA(mammals)
 ```
-
+```{r}
+mean(mammals$`max. life`)
+```
 ```{r}
 x <- mammals[ 11]
 colMeans(x)
 ```
+_First two lines of code here are how I would've done it_
 
 ```{r}
 summary(mammals)
@@ -165,8 +171,10 @@ names(mammals)
 ```
 
 4. Rename any columns that have capitol letters or punctuation issues.  
+
 ```{r}
 mammals_new <- rename(mammals, genus="Genus", wean_mass="wean mass", max_life= "max. life", litter_size="litter size", litters_per_year="litters/year")
+
 mammals_new
 ```
 
@@ -191,6 +199,9 @@ select(mammals_new, contains("mass"))
 ```
 
 8. Select all of the columns that are of class `character`.  
+
+Uses `select_if()`
+
 ```{r}
 select_if(mammals_new, ~is.character(.))
 ```
@@ -198,7 +209,8 @@ select_if(mammals_new, ~is.character(.))
 ## Other
 Here are two examples of code that are super helpful to have in your bag of tricks.  
 
-Imported data frames often have a mix of lower and uppercase column names. Use `toupper()` or `tolower()` to fix this issue. I always try to use lowercase to keep things consistent.  
+Imported data frames often have a mix of lower and uppercase column names. Use `select_all()` with `toupper` or `tolower`  to fix this issue. I always try to use lowercase to keep things consistent.  
+
 ```{r}
 mammals <- select_all(mammals, tolower)
 ```
@@ -207,7 +219,10 @@ mammals <- select_all(mammals, tolower)
 names(mammals)
 ```
 
-When naming columns, blank spaces are often added (don't do this, please). Here is a trick to remove these.  
+#Removing spaces in names!
+
+When naming columns, blank spaces are often added (don't do this, please). Here is a trick to remove these.
+
 ```{r}
 select_all(mammals, ~str_replace(., " ", "_"))
 ```
