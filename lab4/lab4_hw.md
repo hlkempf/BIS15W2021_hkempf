@@ -1,7 +1,7 @@
 ---
 title: "Lab 4 Homework"
 author: "Hannah Kempf"
-date: "2021-01-19"
+date: "2021-01-20"
 output:
   html_document: 
     theme: spacelab
@@ -33,14 +33,14 @@ Data: http://datadryad.org/resource/doi:10.5061/dryad.q5j65/1
 
 ```r
 #Set working directory to the "data" file within the lab 4 file
-setwd("~/Desktop/BIS15W2021_hkempf/lab4/data")
+#setwd("~/Desktop/BIS15W2021_hkempf/lab4/data")
 
-homerange <- readr::read_csv("Tamburelloetal_HomeRangeDatabase.csv")
+homerange <- readr::read_csv("data/Tamburelloetal_HomeRangeDatabase.csv")
 ```
 
 ```
 ## 
-## ── Column specification ────────────────────────────────────────────────────────
+## -- Column specification --------------------------------------------------------
 ## cols(
 ##   .default = col_character(),
 ##   mean.mass.g = col_double(),
@@ -51,7 +51,7 @@ homerange <- readr::read_csv("Tamburelloetal_HomeRangeDatabase.csv")
 ##   log10.preymass = col_double(),
 ##   PPMR = col_double()
 ## )
-## ℹ Use `spec()` for the full column specifications.
+## i Use `spec()` for the full column specifications.
 ```
 
 
@@ -175,7 +175,7 @@ str(homerange)
 ```
 
 ```
-## tibble [569 × 24] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+## tibble [569 x 24] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##  $ taxon                     : chr [1:569] "lake fishes" "river fishes" "river fishes" "river fishes" ...
 ##  $ common.name               : chr [1:569] "american eel" "blacktail redhorse" "central stoneroller" "rosyside dace" ...
 ##  $ class                     : chr [1:569] "actinopterygii" "actinopterygii" "actinopterygii" "actinopterygii" ...
@@ -190,7 +190,7 @@ str(homerange)
 ##  $ alternative.mass.reference: chr [1:569] NA NA NA NA ...
 ##  $ mean.hra.m2               : num [1:569] 282750 282.1 116.1 125.5 87.1 ...
 ##  $ log10.hra                 : num [1:569] 5.45 2.45 2.06 2.1 1.94 ...
-##  $ hra.reference             : chr [1:569] "Minns, C. K. 1995. Allometry of home range size in lake and river fishes. Canadian Journal of Fisheries and Aquatic Sciences 52 "Minns, C. K. 1995. Allometry of home range size in lake and river fishes. Canadian Journal of Fisheries and Aquatic Sciences 52 "Minns, C. K. 1995. Allometry of home range size in lake and river fishes. Canadian Journal of Fisheries and Aquatic Sciences 52 "Minns, C. K. 1995. Allometry of home range size in lake and river fishes. Canadian Journal of Fisheries and Aquatic Sciences 52 ...
+##  $ hra.reference             : chr [1:569] "Minns, C. K. 1995. Allometry of home range size in lake and river fishes. Canadian Journal of Fisheries and Aqu"| __truncated__ "Minns, C. K. 1995. Allometry of home range size in lake and river fishes. Canadian Journal of Fisheries and Aqu"| __truncated__ "Minns, C. K. 1995. Allometry of home range size in lake and river fishes. Canadian Journal of Fisheries and Aqu"| __truncated__ "Minns, C. K. 1995. Allometry of home range size in lake and river fishes. Canadian Journal of Fisheries and Aqu"| __truncated__ ...
 ##  $ realm                     : chr [1:569] "aquatic" "aquatic" "aquatic" "aquatic" ...
 ##  $ thermoregulation          : chr [1:569] "ectotherm" "ectotherm" "ectotherm" "ectotherm" ...
 ##  $ locomotion                : chr [1:569] "swimming" "swimming" "swimming" "swimming" ...
@@ -283,7 +283,7 @@ levels(homerange$order)
 ## [40] "rodentia"           "salmoniformes"      "scorpaeniformes"   
 ## [43] "siluriformes"       "soricomorpha"       "squamata"          
 ## [46] "strigiformes"       "struthioniformes"   "syngnathiformes"   
-## [49] "testudines"         "tetraodontiformes\xa0" "tinamiformes"
+## [49] "testudines"         "tetraodontiformes<U+00A0>" "tinamiformes"
 ```
 
 **4. What taxa are represented in the `homerange` data frame? Make a new data frame `taxa` that is restricted to taxon, common name, class, order, family, genus, species.** 
@@ -452,7 +452,7 @@ arrange(snake_data, mean.hra.m2)
 ##  8 snakes cottonmouth               10655 
 ##  9 snakes redbacked ratsnake        15400 
 ## 10 snakes gopher snake              17400 
-## # … with 31 more rows
+## # ... with 31 more rows
 ```
 The snake with the smallest homerange is the Namaqua Dwarf Adder. They live in southern Africa and are venemous. It is largely active during the day and likes to hang out in soft sand. (Source: https://www.africansnakebiteinstitute.com/snake/namaqua-dwarf-adder/)
 
