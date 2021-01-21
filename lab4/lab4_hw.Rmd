@@ -33,9 +33,9 @@ Data: http://datadryad.org/resource/doi:10.5061/dryad.q5j65/1
 
 ```{r}
 #Set working directory to the "data" file within the lab 4 file
-setwd("~/Desktop/BIS15W2021_hkempf/lab4/data")
+#setwd("~/Desktop/BIS15W2021_hkempf/lab4/data")
 
-homerange <- readr::read_csv("Tamburelloetal_HomeRangeDatabase.csv")
+homerange <- readr::read_csv("data/Tamburelloetal_HomeRangeDatabase.csv")
 ```
 
 
