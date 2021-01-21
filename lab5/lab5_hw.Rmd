@@ -162,7 +162,7 @@ bad_guys %>%
 
 9. OK, so are there more good guys or bad guys that are bald (personal interest)?
 ```{r}
-#Rewrite to includ hair length
+#Rewrite to include hair length
 
 bad_guys <-
   superhero_info %>%
@@ -177,7 +177,7 @@ bad_guys$hair_color
 bad_guys <-
   superhero_info %>%
   select(name, alignment, race, gender, height, hair_color) %>%
-  filter(hair_color == "No Hair")
+  filter(hair_color == "No Hair", alignment=="bad")
 
 #print this out
 bad_guys
@@ -185,12 +185,25 @@ bad_guys
 ```
 Yep, looks like there are quite a few bad bald guys out there.
 
-10. Let's explore who the really "big" superheros are. In the `superhero_info` data, which have a height over 200 or weight over 300?
+```{r}
+#Rewrite to includ hair length
+
+good_guys <-
+  superhero_info %>%
+  select(name, alignment, race, gender, height, hair_color) %>%
+  filter(alignment == "good", hair_color=="No Hair")
+
+good_guys
+
+```
+There are 2 more good guys with bald heads!
+
+10. Let's explore who the really "big" superheros are. In the `superhero_info` data, which have a height over 300 or weight over 450?
 
 ```{r}
 superhero_info %>% 
   select(name, height, weight) %>% 
-  filter(height>=200 | weight>=300)
+  filter(height>300 | weight>450)
 
 ```
 
@@ -204,27 +217,30 @@ superhero_info %>%
 12. ...and the superheros over 450 in weight. Bonus question!
 Why do we not have 16 rows in question #10?
 
-We do not have 16 rows because the "|" tells R to print out superheroes that are a height over 200 *AND/OR* weight over 300. Both conditions don't have to be true, so there are more data that get pulled from the original dataframe (65 rows).
+_Should this be "14"?_
 
 ```{r}
 #Here, I assume the heroes need to be BOTH >300 in ht. AND > 450 in wt (i.e., both must be true)
+
 superhero_info %>% 
   select(name,height,weight) %>% 
   filter(height>300, weight>450)
 ```
 
+We do not have 16 rows because the "|" tells R to print out superheroes that are a height over 200 *AND/OR* weight over 300. Both conditions don't have to be true, so there are more data that get pulled from the original dataframe.
+
 ## Height to Weight Ratio
 
-13. It's easy to be strong when you are heavy and tall, but who is heavy and short? Which superheros have the highest height to weight ratio?
+13. It's easy to be strong when you are heavy and tall, but who is heavy and short? Which superheros have the lowest height to weight ratio?
 
 ```{r}
 superhero_info %>% 
   mutate(ratio=height/weight) %>%
   select(name, ratio) %>% 
-  arrange(desc(ratio))
+  arrange(ratio)
   
 ```
-Groot!
+Giganta.
 
 ## `superhero_powers`
 Have a quick look at the `superhero_powers` data frame.  
@@ -249,9 +265,9 @@ Of all the superheroes, 178 have accelerated healing, 257 have durability, and 3
 ```{r}
 kinesis<-
 superhero_powers %>% 
-  select(contains("kinesis"))
+  select(hero_names, contains("kinesis"))
 
-glimpse(kinesis) #Looks like there are 9 types of `kinesis` powers
+kinesis
 ```
 
 16. Pick your favorite superhero and let's see their powers!

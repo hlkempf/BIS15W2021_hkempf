@@ -1,7 +1,7 @@
 ---
 title: "Lab 5 Homework"
 author: "Hannah Kempf"
-date: "2021-01-19"
+date: "2021-01-21"
 output:
   html_document: 
     theme: spacelab
@@ -502,7 +502,7 @@ bad_guys %>%
 9. OK, so are there more good guys or bad guys that are bald (personal interest)?
 
 ```r
-#Rewrite to includ hair length
+#Rewrite to include hair length
 
 bad_guys <-
   superhero_info %>%
@@ -591,54 +591,87 @@ bad_guys$hair_color
 bad_guys <-
   superhero_info %>%
   select(name, alignment, race, gender, height, hair_color) %>%
-  filter(hair_color == "No Hair")
+  filter(hair_color == "No Hair", alignment=="bad")
 
 #print this out
 bad_guys
 ```
 
 ```
-## # A tibble: 75 x 6
+## # A tibble: 35 x 6
 ##    name          alignment race              gender height hair_color
 ##    <chr>         <chr>     <chr>             <chr>   <dbl> <chr>     
-##  1 A-Bomb        good      Human             Male      203 No Hair   
-##  2 Abe Sapien    good      Icthyo Sapien     Male      191 No Hair   
-##  3 Abin Sur      good      Ungaran           Male      185 No Hair   
-##  4 Abomination   bad       Human / Radiation Male      203 No Hair   
-##  5 Absorbing Man bad       Human             Male      193 No Hair   
-##  6 Alien         bad       Xenomorph XX121   Male      244 No Hair   
-##  7 Annihilus     bad       <NA>              Male      180 No Hair   
-##  8 Anti-Monitor  bad       God / Eternal     Male       61 No Hair   
-##  9 Beta Ray Bill good      <NA>              Male      201 No Hair   
-## 10 Bishop        good      Mutant            Male      198 No Hair   
-## # … with 65 more rows
+##  1 Abomination   bad       Human / Radiation Male    203   No Hair   
+##  2 Absorbing Man bad       Human             Male    193   No Hair   
+##  3 Alien         bad       Xenomorph XX121   Male    244   No Hair   
+##  4 Annihilus     bad       <NA>              Male    180   No Hair   
+##  5 Anti-Monitor  bad       God / Eternal     Male     61   No Hair   
+##  6 Black Manta   bad       Human             Male    188   No Hair   
+##  7 Bloodwraith   bad       <NA>              Male     30.5 No Hair   
+##  8 Brainiac      bad       Android           Male    198   No Hair   
+##  9 Darkseid      bad       New God           Male    267   No Hair   
+## 10 Darth Vader   bad       Cyborg            Male    198   No Hair   
+## # … with 25 more rows
 ```
 Yep, looks like there are quite a few bad bald guys out there.
 
-10. Let's explore who the really "big" superheros are. In the `superhero_info` data, which have a height over 200 or weight over 300?
+
+```r
+#Rewrite to includ hair length
+
+good_guys <-
+  superhero_info %>%
+  select(name, alignment, race, gender, height, hair_color) %>%
+  filter(alignment == "good", hair_color=="No Hair")
+
+good_guys
+```
+
+```
+## # A tibble: 37 x 6
+##    name            alignment race          gender height hair_color
+##    <chr>           <chr>     <chr>         <chr>   <dbl> <chr>     
+##  1 A-Bomb          good      Human         Male      203 No Hair   
+##  2 Abe Sapien      good      Icthyo Sapien Male      191 No Hair   
+##  3 Abin Sur        good      Ungaran       Male      185 No Hair   
+##  4 Beta Ray Bill   good      <NA>          Male      201 No Hair   
+##  5 Bishop          good      Mutant        Male      198 No Hair   
+##  6 Black Lightning good      <NA>          Male      185 No Hair   
+##  7 Blaquesmith     good      <NA>          <NA>       NA No Hair   
+##  8 Bloodhawk       good      Mutant        Male       NA No Hair   
+##  9 Crimson Dynamo  good      <NA>          Male      180 No Hair   
+## 10 Donatello       good      Mutant        Male       NA No Hair   
+## # … with 27 more rows
+```
+There are 2 more good guys with bald heads!
+
+10. Let's explore who the really "big" superheros are. In the `superhero_info` data, which have a height over 300 or weight over 450?
 
 
 ```r
 superhero_info %>% 
   select(name, height, weight) %>% 
-  filter(height>=200 | weight>=300)
+  filter(height>300 | weight>450)
 ```
 
 ```
-## # A tibble: 65 x 3
+## # A tibble: 14 x 3
 ##    name          height weight
 ##    <chr>          <dbl>  <dbl>
-##  1 A-Bomb           203    441
-##  2 Abomination      203    441
-##  3 Alien            244    169
-##  4 Amazo            257    173
-##  5 Ant-Man          211    122
-##  6 Anti-Venom       229    358
-##  7 Apocalypse       213    135
-##  8 Bane             203    180
-##  9 Beta Ray Bill    201    216
-## 10 Bloodaxe         218    495
-## # … with 55 more rows
+##  1 Bloodaxe       218      495
+##  2 Darkseid       267      817
+##  3 Fin Fang Foom  975       18
+##  4 Galactus       876       16
+##  5 Giganta         62.5    630
+##  6 Groot          701        4
+##  7 Hulk           244      630
+##  8 Juggernaut     287      855
+##  9 MODOK          366      338
+## 10 Onslaught      305      405
+## 11 Red Hulk       213      630
+## 12 Sasquatch      305      900
+## 13 Wolfsbane      366      473
+## 14 Ymir           305.      NA
 ```
 
 11. Just to be clear on the `|` operator,  have a look at the superheros over 300 in height...
@@ -666,11 +699,12 @@ superhero_info %>%
 12. ...and the superheros over 450 in weight. Bonus question!
 Why do we not have 16 rows in question #10?
 
-We do not have 16 rows because the "|" tells R to print out superheroes that are a height over 200 *AND/OR* weight over 300. Both conditions don't have to be true, so there are more data that get pulled from the original dataframe (65 rows).
+_Should this be "14"?_
 
 
 ```r
 #Here, I assume the heroes need to be BOTH >300 in ht. AND > 450 in wt (i.e., both must be true)
+
 superhero_info %>% 
   select(name,height,weight) %>% 
   filter(height>300, weight>450)
@@ -684,35 +718,37 @@ superhero_info %>%
 ## 2 Wolfsbane    366    473
 ```
 
+We do not have 16 rows because the "|" tells R to print out superheroes that are a height over 200 *AND/OR* weight over 300. Both conditions don't have to be true, so there are more data that get pulled from the original dataframe.
+
 ## Height to Weight Ratio
 
-13. It's easy to be strong when you are heavy and tall, but who is heavy and short? Which superheros have the highest height to weight ratio?
+13. It's easy to be strong when you are heavy and tall, but who is heavy and short? Which superheros have the lowest height to weight ratio?
 
 
 ```r
 superhero_info %>% 
   mutate(ratio=height/weight) %>%
   select(name, ratio) %>% 
-  arrange(desc(ratio))
+  arrange(ratio)
 ```
 
 ```
 ## # A tibble: 734 x 2
-##    name             ratio
-##    <chr>            <dbl>
-##  1 Groot           175.  
-##  2 Galactus         54.8 
-##  3 Fin Fang Foom    54.2 
-##  4 Longshot          5.22
-##  5 Jack-Jack         5.07
-##  6 Rocket Raccoon    4.88
-##  7 Dash              4.52
-##  8 Howard the Duck   4.39
-##  9 Swarm             4.17
-## 10 Yoda              3.88
+##    name         ratio
+##    <chr>        <dbl>
+##  1 Giganta     0.0992
+##  2 Utgard-Loki 0.262 
+##  3 Darkseid    0.327 
+##  4 Juggernaut  0.336 
+##  5 Red Hulk    0.338 
+##  6 Sasquatch   0.339 
+##  7 Hulk        0.387 
+##  8 Bloodaxe    0.440 
+##  9 Thanos      0.454 
+## 10 A-Bomb      0.460 
 ## # … with 724 more rows
 ```
-Groot!
+Giganta.
 
 ## `superhero_powers`
 Have a quick look at the `superhero_powers` data frame.  
@@ -936,23 +972,27 @@ Of all the superheroes, 178 have accelerated healing, 257 have durability, and 3
 ```r
 kinesis<-
 superhero_powers %>% 
-  select(contains("kinesis"))
+  select(hero_names, contains("kinesis"))
 
-glimpse(kinesis) #Looks like there are 9 types of `kinesis` powers
+kinesis
 ```
 
 ```
-## Rows: 667
-## Columns: 9
-## $ cryokinesis    <lgl> FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE…
-## $ electrokinesis <lgl> FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE…
-## $ telekinesis    <lgl> FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE…
-## $ hyperkinesis   <lgl> FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE…
-## $ hypnokinesis   <lgl> FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE…
-## $ thirstokinesis <lgl> FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE…
-## $ biokinesis     <lgl> FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE…
-## $ terrakinesis   <lgl> FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE…
-## $ vitakinesis    <lgl> FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE…
+## # A tibble: 667 x 10
+##    hero_names cryokinesis electrokinesis telekinesis hyperkinesis hypnokinesis
+##    <chr>      <lgl>       <lgl>          <lgl>       <lgl>        <lgl>       
+##  1 3-D Man    FALSE       FALSE          FALSE       FALSE        FALSE       
+##  2 A-Bomb     FALSE       FALSE          FALSE       FALSE        FALSE       
+##  3 Abe Sapien FALSE       FALSE          FALSE       FALSE        FALSE       
+##  4 Abin Sur   FALSE       FALSE          FALSE       FALSE        FALSE       
+##  5 Abominati… FALSE       FALSE          FALSE       FALSE        FALSE       
+##  6 Abraxas    FALSE       FALSE          FALSE       FALSE        FALSE       
+##  7 Absorbing… FALSE       FALSE          FALSE       FALSE        FALSE       
+##  8 Adam Monr… FALSE       FALSE          FALSE       FALSE        FALSE       
+##  9 Adam Stra… FALSE       FALSE          FALSE       FALSE        FALSE       
+## 10 Agent Bob  FALSE       FALSE          FALSE       FALSE        FALSE       
+## # … with 657 more rows, and 4 more variables: thirstokinesis <lgl>,
+## #   biokinesis <lgl>, terrakinesis <lgl>, vitakinesis <lgl>
 ```
 
 16. Pick your favorite superhero and let's see their powers!
