@@ -141,6 +141,12 @@ good_guys %>%
 ```
 _side note-- whoooo is Thor Girl? Also was Loki REALLY "bad", or just put in a crappy situation?_
 
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
+
+
 8. Among the bad guys, who are the male humans over 200 inches in height?
 
 ```{r}
@@ -159,6 +165,8 @@ bad_guys %>%
   filter(gender == "Male", height > 200)
   
 ```
+
+</div>
 
 9. OK, so are there more good guys or bad guys that are bald (personal interest)?
 ```{r}
@@ -248,6 +256,10 @@ Have a quick look at the `superhero_powers` data frame.
 ```{r}
 glimpse(superhero_powers)
 ```
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 14. How many superheros have a combination of accelerated healing, durability, and super strength?
 ```{r}
@@ -257,6 +269,14 @@ tabyl(superhero_powers, durability)
 tabyl(superhero_powers, super_strength)
 ```
 Of all the superheroes, 178 have accelerated healing, 257 have durability, and 360 have super strength. 
+
+
+</div>
+
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 ## `kinesis`
 
@@ -269,6 +289,8 @@ superhero_powers %>%
 
 kinesis
 ```
+
+</div>
 
 16. Pick your favorite superhero and let's see their powers!
 ```{r}
