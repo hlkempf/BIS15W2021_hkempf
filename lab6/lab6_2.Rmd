@@ -45,9 +45,11 @@ Why do we have NA here? Do all of these penguins lack data?
 penguins %>% 
   group_by(island) %>% 
   summarize(number_NAs=sum(is.na(body_mass_g)))
+#finds the number of NAs using sum...
 ```
 
 Well, that won't work so let's remove the NAs and recalculate.
+#Remember to remove NAs with `filter(!is.na`())` 
 ```{r}
 penguins %>% 
   filter(!is.na(body_mass_g)) %>% 
@@ -61,13 +63,16 @@ What if we are interested in the number of observations (penguins) by species an
 ```{r}
 penguins %>% 
   group_by(island, species) %>% 
-  summarize(n=n(), .groups= 'keep')#the .groups argument here just prevents a warning message
+  summarize(n=n(), .groups= 'keep')
+
+#the .groups argument here just prevents a warning message
 ```
 
 ## Counts
 Although these summary functions are super helpful, oftentimes we are mostly interested in counts. The [janitor package](https://garthtarr.github.io/meatR/janitor.html) does a lot with counts, but there are also functions that are part of dplyr that are useful.  
 
 `count()` is an easy way of determining how many observations you have within a column. It acts like a combination of `group_by()` and `n()`.
+
 ```{r}
 penguins %>% 
   count(island, sort = T) #sort=T sorts the column in descending order
@@ -91,7 +96,7 @@ For counts, I am starting to prefer `tabyl()`. Lots of options are supported in 
 penguins %>% 
   tabyl(species, island)
 ```
-
+See 6.1 for more about `adorn` features
 ```{r}
 penguins %>% 
   tabyl(species, island) %>% 
@@ -103,23 +108,34 @@ penguins %>%
 ## Practice
 1. Produce a summary of the mean for bill_length_mm, bill_depth_mm, flipper_length_mm, and body_mass_g within Adelie penguins only. Be sure to provide the number of samples.
 ```{r}
+  
+#######using `na.rm = T` > different than !is.na in the `filter` funct
 
+penguins %>% 
+  filter(species=="Adelie") %>%
+  summarize(mean_bill_length=mean(bill_length_mm, na.rm = T),
+            mean_bill_depth=mean(bill_depth_mm, na.rm = T),
+            mean_flipper_length=mean(flipper_length_mm, na.rm = T),
+            mean_body_mass=mean(body_mass_g, na.rm = T))
+            
 ```
 
 2. How does the mean of `bill_length_mm` compare between penguin species?
 ```{r}
-
+penguins %>% 
+  group_by(species) %>% 
+  summarize(mean_bill_length=mean(bill_length_mm, na.rm=T))
 ```
 
 3. For some penguins, their sex is listed as NA. Where do these penguins occur?
 ```{r}
-
+#SKIPPED IN CLASS
 ```
 
 ## `across()`
 Last time we had some great questions on how to use `filter()` and `select()` across multiple variables. There is a new function in dplyr called `across()` which is designed to work across multiple variables. Have a look at Rebecca Barter's awesome blog [here](http://www.rebeccabarter.com/blog/2020-07-09-across/) as I am following her below.  
 
-What if we wanted to apply summarize in order to produce distinct counts over multiple variables; i.e. species, island, and sex? Although this isn't a lot of coding you can image that with a lot of variables it would be cumbersome.
+What if we wanted to apply summarize in order to produce distinct counts over multiple variables; i.e. species, island, and sex? Although this isn't a lot of coding you can imagine that with a lot of variables it would be cumbersome.
 ```{r}
 penguins %>%
   summarize(distinct_species = n_distinct(species),
